@@ -2,7 +2,23 @@ Emrax logic model/PMSM_realmodel.slx
 Emrax logic model/PMSM_realmodel.slx.original
 Emrax logic model/amk_simulation.zip
 
-slprj/
+Emrax logic model/slprj/
+*.slxc
+*.asv
+*.autosave
+*.mex*
+*.mdl.r20*
+*.slx.r20*
+
+amk_simulation/slprj/
+*.slxc
+*.asv
+*.autosave
+*.mex*
+*.mdl.r20*
+*.slx.r20*
+
+induction model/slprj/
 *.slxc
 *.asv
 *.autosave
