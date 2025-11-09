@@ -1,3 +1,11 @@
-Emrax_logic_model/PMSM_realmodel.slx
-Emrax_logic_model/PMSM_realmodel.slx.original
-Emrax_logic_model/amk_simulation.zip
+Emrax logic model/PMSM_realmodel.slx
+Emrax logic model/PMSM_realmodel.slx.original
+Emrax logic model/amk_simulation.zip
+
+slprj/
+*.slxc
+*.asv
+*.autosave
+*.mex*
+*.mdl.r20*
+*.slx.r20*
