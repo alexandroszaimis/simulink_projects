@@ -1,0 +1,81 @@
+%EMRAX 228 params
+Ldm = 707*10^(-6);
+Lqm = 782*10^(-6);
+Ld = 400*10^(-6);
+Lq = 520*10^(-6);
+I_base = 85.7;
+J = (2.74e-4)+10*(13.9e-4); %[moment of inertia]
+%J = 30e-4;
+Rs = 202.5e-3; %[phase resistance]
+np = 5; %[pole pairs]
+bm = 0.00; %[T = bm*w]
+u_dc = 540;
+
+Lq_tra = Lq/3;
+Ld_tra = Ld/3;
+Rs_tra = Rs/3;
+
+k = 1;
+
+I_max = 85.7;
+
+psi = 0.05077789; %[PM flux - Vs]
+
+u_nom = u_dc*k; %[Max ac voltage SVPWM]
+N_max = 20000;
+wm_max = N_max*2*pi/60;
+w_base = 2*pi*N_max/60; %[rad/s]
+Vd_lim = u_nom;
+rpm_nom = 20000;
+%Inverter params
+fsw = 8e3; %[Switching frequency]
+Peak_power = 100000;
+Peak_regen = -1500000;
+
+sample_time = 1e-6;
+
+%current control params
+tr = 1e-3; %[rise time]
+trfw = 8e-3;
+trs = 15e-3;
+ac = log(9)/tr; %[bandwidth for current]
+as = log(9)/trs; %[bandwidth for speed]
+a_fw = log(9)/trfw;
+
+ba = 2*k^2*(as*J - bm)/(np^2*psi);
+kp_s = 2*k^2*as*J/(np^2*psi); %[kp speed]
+ki_s = 2*k^2*as^2*J/(np^2*psi); %[ki speed]
+Ra_d = ac*Ld-Rs; %active resistance d
+Ra_q = ac*Lq-Rs; %active resistance q
+kp_d = ac*Ld;
+ki_d = (ac^2)*Ld;
+kp_q = ac*Lq;
+ki_q = (ac^2)*Lq;
+
+min_value = -500;
+max_value = 500;
+Icon = 33.5;
+Ipeak = 85.7;
+Imax_interval = 1.24;
+
+max_temp = 140;
+temp_threshold = 100;
+
+%simout = sim("amk_sim_model.slx");
+
+%if simout.wm < 500
+%    psi = 0.047;
+%else
+%    psi = 0.038;
+%end
+
+%plot(simout.IGBT_Temperature, simout.Stator_current, '-', 'LineWidth', 2);
+%grid on;
+%y = linspace(0,110,1000);
+%yticks([0 5 10 15 20 25 30 35 40 45 50 55 60 65 70 75 80 85 90 95 100 105 110]);
+%xticks([30 40 50 60 70 80 90 100 110 120 130 140]);
+%xticklabels({'0','1.24','2','3','4','5','6','7','8','9','10'})
+%title('Inverter Phase Current vs Motor Temperature')
+%xlabel('Motor Temperature(°C)')
+%ylabel('Inverter Phase Current(Arms)')
+%xlim([30 140]);
